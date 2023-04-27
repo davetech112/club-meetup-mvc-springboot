@@ -1,0 +1,63 @@
+<html xmlns:th="https//thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+
+<head>
+  <title>Club Edit</title>
+</head>
+<body class="d-flex flex-column h-100">
+<main class="flex-shrink-0">
+  <!-- Navigation-->
+
+  <!-- Page Content-->
+  <section layout:fragment="body" class="py-5">
+    <div class="container">
+      <form role="form" method="post" th:action="@{/clubs/{clubId}/edit(clubId = ${club.id})}" th:object="${club}">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="title">Title</label>
+            <input type="text"
+                   class="form-control"
+                   name="title"
+                   th:field="*{title}"
+                   id="title"
+                   placeholder="Title">
+            <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}"></p>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="photoUrl">Photo Url</label>
+            <input type="text"
+                   class="form-control"
+                   name="photoUrl"
+                   th:field="*{photoUrl}"
+                   id="photoUrl"
+                   placeholder="Photo Url">
+            <p th:if="${#fields.hasErrors('photoUrl')}" class="text-danger" th:errors="*{photoUrl}"></p>
+          </div>
+
+        <div class="form-group mb-3">
+          <label for="content">Content</label>
+          <input type="text"
+                 class="form-control"
+                 name="content"
+                 th:field="*{content}"
+                 id="content"
+                 placeholder="Content">
+          <p th:if="${#fields.hasErrors('content')}" class="text-danger" th:errors="*{content}"></p>
+        </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </section>
+  <!--  <section class="py-5 bg-light">-->
+  <!--    <div class="container px-5 my-5">-->
+  <!--      <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>-->
+  <!--      <a class="btn btn-lg btn-primary" href="#!">Contact us</a>-->
+  <!--    </div>-->
+  <!--  </section>-->
+</main>
+
+</body>
+</html>
