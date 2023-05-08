@@ -32,8 +32,13 @@
               <div class="small text-muted" th:text="${club.createdOn}"></div>
               <h2 class="card-title">About this Running Club</h2>
               <p class="card-text" th:text="${club.content}"></p>
-              <a class="btn btn-primary" th:href="@{/clubs/{clubId}/delete(clubId = ${club.id})}" >Delete</a>
-              <a class="btn btn-primary" th:href="@{/events/{clubId}/new(clubId = ${club.id})}" >New Event</a>
+              <div th:if="${user != null}">
+                <div th:if="${user.getId}==${club.getCreatedBy().getId()}">
+                  <a class="btn btn-primary" th:href="@{/clubs/{clubId}/delete(clubId = ${club.id})}" >Delete</a>
+                  <a class="btn btn-primary" th:href="@{/events/{clubId}/new(clubId = ${club.id})}" >New Event</a>
+                </div>
+              </div>
+
             </div>
           </div>
           <!-- Nested row for non-featured blog posts-->

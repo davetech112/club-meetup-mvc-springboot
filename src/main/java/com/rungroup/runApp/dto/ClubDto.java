@@ -1,5 +1,6 @@
 package com.rungroup.runApp.dto;
 
+import com.rungroup.runApp.models.UserEntity;
 import lombok.Builder;
 import lombok.Data;
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +18,7 @@ public class ClubDto {
     private String photoUrl;
     @NotEmpty(message= "Content should not be empty")
     private String content;
+    private UserEntity createdBy;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     List<EventDto> events;

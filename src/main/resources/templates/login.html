@@ -71,10 +71,11 @@
                         </div>
 <!--                        <button th:href="@{/register}" type="submit" class="btn btn-secondary">Dont have an account? Register here</button>-->
                         <button type="submit" value="log in" class="btn btn-black">Login here</button>
+                        <form method="get" th:action="@{/register}">
+                            <button type="submit" class="btn btn-secondary">Don't have an account? Register here</button>
+                        </form>
                     </form>
-                    <form method="get" th:action="@{/register}">
-                        <button type="submit" class="btn btn-secondary">Don't have an account? Register here</button>
-                    </form>
+
                 </div>
             </div>
         </div>

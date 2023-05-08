@@ -2,6 +2,8 @@ package com.rungroup.runApp.controller;
 
 import com.rungroup.runApp.dto.RegistrationDto;
 import com.rungroup.runApp.models.UserEntity;
+import com.rungroup.runApp.security.SecurityConfig;
+import com.rungroup.runApp.security.SecurityUtil;
 import com.rungroup.runApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,19 @@ public class AuthController {
     }
     @GetMapping("/login")
     public String login(){
-        return "login";
+        String user = SecurityUtil.getSessionUser();
+        if(user == null) {
+            return "login";
+        }
+        return "redirect:/clubs";
     }
 
     @GetMapping("/register")
     public String getRegisterForm(Model model){
+        String existingUser = SecurityUtil.getSessionUser();
+        if(existingUser != null) {
+            return "redirect:/clubs";
+        }
         RegistrationDto user = new RegistrationDto();
         model.addAttribute("user", user);
         return "register";
